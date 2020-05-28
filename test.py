@@ -1,13 +1,13 @@
-with open("./user_file.txt", "r", encoding='utf-8')as file:
-    s = [x.strip() for x in file.readlines()]
-    # print(s)
-    data = [i.split(",") for i in s]
-    # print(data)
-    for i in range(len(data)):
-        for j in range(len(data[i])):
-            print(data[i][j])
-            if "leiyh0804" in data[i][j] and "123456" in data[i][j]:
-                print("登录成功")
+# with open("./user_file.txt", "r", encoding='utf-8')as file:
+#     s = [x.strip() for x in file.readlines()]
+#     # print(s)
+#     data = [i.split(",") for i in s]
+#     # print(data)
+#     for i in range(len(data)):
+#         for j in range(len(data[i])):
+#             print(data[i][j])
+#             if "leiyh0804" in data[i][j] and "123456" in data[i][j]:
+#                 print("登录成功")
 
 
 
@@ -23,7 +23,6 @@ with open("./user_file.txt", "r", encoding='utf-8')as file:
     #     else:
     #         print("登录失败")
     #         continue
-
 
 
 

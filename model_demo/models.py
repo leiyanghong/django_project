@@ -17,3 +17,6 @@ class Student(models.Model):
     # models.DateField  # data 数据类型
     # models.DateTimeField  # 日期类型
     # models.TextField  # 文本类型
+    class Meta:
+        db_table = 'student'  # 指定表名
+
