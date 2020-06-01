@@ -24,4 +24,5 @@ urlpatterns = [
     # 使用include分发路由的时候，给每个子路由指定一个命名空间，这样就可以区分出每个子路由中的同名路由了
     path('v01/',include("app01.urls",namespace='app01')),  # 主路由分发子路由路径为v01/  ,namespace='v01'
     path('v02/',include("app02.urls",namespace='app02')),  # 主路由分发子路由路径为v02/  ,namespace='v02'
+    path('model/',include('model_demo.urls')),
 ]

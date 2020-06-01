@@ -6,3 +6,6 @@
 .idea
 .gitignore
 .idea/
+model_demo/__pycache__/urls.cpython-37.pyc
+model_demo/__pycache__/views.cpython-37.pyc
+model_demo/migrations/0001_initial.py

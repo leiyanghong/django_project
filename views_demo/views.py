@@ -43,7 +43,7 @@ class Project(View):
         return JsonResponse({"code": 200, "masge": "登录成功", "data": "null"})
 
     def put(self, request,page,size):
-        return HttpResponse("修改了一个项目")
+        return HttpResponse("修改了一个项目1")
 
     def delete(self, request,page,size):
         return HttpResponse("删除了一个项目")
