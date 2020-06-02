@@ -1,5 +1,5 @@
 import random
-
+from django.core.paginator import Paginator
 from django.db import transaction
 from django.http import HttpResponse, JsonResponse
 from django.views import View
@@ -26,17 +26,25 @@ def random_phone(request):
 
 class DataBase(View):
     def get(self, request):
-        student = Student.objects.all()
-        data_list = []
-        for i in student:
-            d={
-                "id":i.id,
-                "name":i.s_name,
-                "sex":i.s_sex,
-                "phone":i.s_phone,
-            }
-            data_list.append(d)
-        return JsonResponse({"code":200,"msg":"查询成功","data":data_list},safe=False)
+        data = request.GET
+        print(data)
+        student = Student.objects.fileter()
+        # print(type(student))
+        # data_list = []
+        # for i in student:
+        #      d={
+        #          "id":i.id,
+        #          "name":i.s_name,
+        #          "sex":i.s_sex,
+        #          "phone":i.s_phone,
+        #      }
+        #      data_list.append(d)
+
+        # if not current_page:
+        #     current_page = 1
+        # p = Paginator(Student.objects.all().order_by("id"), per_page=10)
+        # page = p.page(int(current_page))
+        return JsonResponse({"code":200,"msg":"查询成功","page":2,"data":None},safe=False)
 
     def post(self, request):
         student = json.loads(request.body)
@@ -45,7 +53,7 @@ class DataBase(View):
         #     student_list.append(Student(s_name=i["name"],s_sex=["sex"],s_phone=["phone"]))
         student_list = [Student(s_name=i["name"],s_sex=i["sex"],s_phone=i["phone"]) for i in student]
         Student.objects.bulk_create(student_list)
-        return JsonResponse({"code": 200, "masge": "新增成功"})
+        return JsonResponse({"code": 200, "masge": "新增成功"},safe=False)
 
     def put(self, request):
         students = Student.objects.all()
@@ -56,9 +64,9 @@ class DataBase(View):
         # Student.objects.all().update(s_name="雷阳洪")
         # transaction.commit()  # 提交修改的操作
         # transaction.rollback()  # 如果报错就回滚
-        return JsonResponse({"code": 200, "masge": "修改成功"})
+        return JsonResponse({"code": 200, "masge": "修改成功"},safe=False)
 
     def delete(self, request):
         Student.objects.all().delete()
-        return JsonResponse({"code": 200, "masge": "删除成功"})
+        return JsonResponse({"code": 200, "masge": "删除成功"},safe=False)
 
