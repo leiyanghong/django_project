@@ -26,7 +26,33 @@
 
 
 
+import re
 
+
+def main():
+    content = 'Hello, I am Jerry, from Chongqing, a montain city, nice to meet you……'
+    regex = re.compile('\w*o\w*')
+    y = regex.match(content)
+    print(y)
+    print(type(y))
+    print(y.group())
+    print(y.span())
+
+def a():
+    white_list = "v02/login/"
+    request_url = "v02/login/"
+    r = re.compile(white_list)
+    print(r)
+    if r.match(request_url):
+
+        print(r.match(request_url))
+        y = r.match(request_url)
+        print(y.group())
+        print(y.span())
+    else:
+        print("no")
+if __name__ == '__main__':
+    a()
 
 
 

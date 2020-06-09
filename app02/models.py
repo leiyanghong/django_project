@@ -34,7 +34,7 @@ class StudentInfo(models.Model):
     s_card = models.CharField("身份证号", max_length=18, null=False, unique=True)
     s_phone = models.CharField(max_length=11, null=False, unique=True, help_text="手机号")
     s_addr = models.CharField("家庭住址", max_length=128, help_text="家庭住址")
-    # 一对一
+    # 一对一 to:表名 to_field:关联的表的字段  on_delete:同ForeignKey字段级联删除（默认） models.CASCADE:删除关联数据，与之关联也删除 related_name:反向查询字段
     s_id = models.OneToOneField(to='Stu', to_field="id", on_delete=models.CASCADE, db_column='s_id',
                                 related_name="stu_info_stu")
 
@@ -59,6 +59,7 @@ class Score(models.Model):
     # 多对一
     c_id = models.ForeignKey(to="Course", to_field="id", on_delete=models.CASCADE, related_name='course_score',
                              db_column='c_id', help_text="学生编号")
+    #
     score = models.PositiveIntegerField("成绩", null=False, default=0, help_text="成绩")
 
     class Meta:

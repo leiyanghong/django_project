@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'utils.login_middleware.LoginMiddleware',  # 指定自定义login用户认证中间件,请求之前的中间件处理放在最下面
 ]
 
 ROOT_URLCONF = 'django_project.urls'
@@ -96,6 +97,17 @@ DATABASES = {
     }
 }
 
+CACHES = { # 配置缓存数据为redis
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379",  # 缓存ip地址 6379
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",  # redis数据库引擎
+            # "PASSWORD":"123456" #redis密码，如果没设密码可以不用配置
+        }
+    }
+}
+
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -133,3 +145,5 @@ USE_TZ = False  # 我们在使用ORM模型的时候需要将这里设置成False
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
